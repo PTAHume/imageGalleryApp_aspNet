@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/x6E4qlhHqpZ/EtXZDSaAEqcSDxbwpocN9p1ZY1GCFY=",
+  "Hash": "00c42rCmitWDGk6WoXfnA9aHftroS5aYJu3Wk2u1cxc=",
   "Source": "image_gallery",
   "BasePath": "_content/image_gallery",
   "Mode": "Default",
@@ -66,6 +66,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Custom/css/style.css",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": "Custom/css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Custom/css/style.css"
+    },
+    {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Custom/js/custom.js",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": "Custom/js/custom.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Custom/js/custom.js"
     },
     {
       "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/favicon.ico",

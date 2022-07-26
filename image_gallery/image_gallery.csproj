@@ -15,6 +15,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="wwwroot\Uploads\" />
+    <Folder Include="wwwroot\Uploads\Gallery\" />
+    <Folder Include="wwwroot\Custom\" />
+    <Folder Include="wwwroot\Custom\js\" />
+    <Folder Include="wwwroot\Custom\css\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
@@ -27,5 +32,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\Uploads\" />
+    <Content Remove="wwwroot\Uploads\Gallery\" />
+    <Content Remove="wwwroot\Custom\" />
+    <Content Remove="wwwroot\Custom\js\" />
+    <Content Remove="wwwroot\Custom\css\" />
   </ItemGroup>
 </Project>
