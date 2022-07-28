@@ -14,8 +14,8 @@ namespace image_gallery.Migrations
                 {
                     GalleryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GalleryUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    GalleryUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,8 +28,8 @@ namespace image_gallery.Migrations
                 {
                     ImageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Caption = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Caption = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GalleryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -9,7 +9,7 @@ namespace image_gallery.Models
         public int GalleryId { get; set; }
         public string GalleryUrl { get; set; }
         public string Title { get; set; }
-        public ICollection<GalleryImage> GalleryImages { get; set; }
+        public ICollection<GalleryImage>GalleryImages { get; set; }
 
     }
 }

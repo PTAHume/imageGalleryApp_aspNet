@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "00c42rCmitWDGk6WoXfnA9aHftroS5aYJu3Wk2u1cxc=",
+  "Hash": "X1yDPS+nWPTyKPxqXS8b6fZgwIu1S1TfoS36tKo/Dck=",
   "Source": "image_gallery",
   "BasePath": "_content/image_gallery",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/obj/Debug/net6.0/scopedcss/projectbundle/image_gallery.bundle.scp.css"
     },
     {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/.DS_Store",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
       "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/css/site.css",
       "SourceId": "image_gallery",
       "SourceType": "Discovered",
@@ -66,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Custom/.DS_Store",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": "Custom/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Custom/.DS_Store"
     },
     {
       "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Custom/css/style.css",
@@ -134,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/site.js"
+    },
+    {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/.DS_Store",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": "lib/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/lib/.DS_Store"
     },
     {
       "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
@@ -1103,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Uploads/.DS_Store",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": "Uploads/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/.DS_Store"
     }
   ]
 }

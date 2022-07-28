@@ -16,14 +16,14 @@
     <label class="col-md-12">Add Images To Gallery</label>
    <div class="col-md-6">
        <label class="btn btn-block btn-primary">
-           Upload Images <input style="display:none" id="Files" name="Files" class="form-control" onchange="PreviewFiles()" placeholder="Enter Title for Image" type="file" multiple accept="image/*" />
+           Upload Images <input style="display: none" id="Files" name="Files" class="form-control" onchange="PreviewFiles(this.files)" placeholder="Enter Title for Image" type="file" multiple accept="image/*" />
        </label>
    </div>
     <div class="col-md-4">
-<input type="button" onclick="ClearPreview()" class="btn-warning btn-block" value="Clear Preview"/>
+<input type="button" onclick="clearPreview()" class="btn-warning btn-block" value="Clear Preview"/>
     </div>
     <div class="col-md-2">
-        <span id="imgCount" class="btn btn-info btn=block"><i class="fa fa-images"></i></span>
+        <span id="imgCount" class="btn btn-info btn-block mt-1"><i class="fa fa-images"></i></span>
     </div>
 </div>
                     <div class="form-group" id="preview" style="margin-bottom:10px;margin-top:5px">

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using image_gallery.Data;
 using image_gallery.Models;
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +28,8 @@ namespace image_gallery.Controllers
         public async Task<IActionResult> PostFormData(Gallery gallery, IFormCollection formdata)
         {
             string GalleryTitle = formdata["GalleryTitle"];
-            int id = await CreateGalleryId(gallery);
+            
+            int id = await CreateGalleryID(gallery);
             int i = 0;
             string GalleryPath = Path.Combine(_env.ContentRootPath+$"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}",id.ToString());
             CreateDirectory(GalleryPath);
@@ -63,7 +66,7 @@ namespace image_gallery.Controllers
                 Directory.CreateDirectory(gallerypath);
             }
         }
-        private async Task<int> CreateGalleryId(Gallery gallery)
+        private async Task<int> CreateGalleryID(Gallery gallery)
         {
             _db.Galleries.Add(gallery);
             await _db.SaveChangesAsync();
