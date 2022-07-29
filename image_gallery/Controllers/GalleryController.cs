@@ -28,6 +28,8 @@ namespace image_gallery.Controllers
         public async Task<IActionResult> PostFormData(Gallery gallery, IFormCollection formdata)
         {
             string GalleryTitle = formdata["GalleryTitle"];
+            gallery.GalleryUrl = "1111111";
+            gallery.Title = "my gallery image";
             
             int id = await CreateGalleryID(gallery);
             int i = 0;
@@ -40,7 +42,8 @@ namespace image_gallery.Controllers
                     var extension = Path.GetExtension(file.FileName);
                     var filename = DateTime.Now.ToString("yymmssfff");
                     var path = Path.Combine(GalleryPath, filename) + extension;
-                    string ImageCaption = formdata["ImageCaption[]"][i];
+                    //string ImageCaption = formdata["ImageCaption[]"][i];
+                    string ImageCaption = $"image{i}";
                     GalleryImage Image = new GalleryImage();
                     Image.GalleryId = id;
                     Image.ImageUrl = path;

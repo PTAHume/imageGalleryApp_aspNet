@@ -35,43 +35,44 @@ function AjaxPost(formdata)
 }
 // function to Preview Files
 
-function PreviewFiles(files)
-{
-    var files = document.querySelector('input[type=file]').files;
+
+function PreviewFiles(files) {
+    var files = [...files];
     //function to read the selected  for upload
-    function readAndPreview(file)
-    {
+
+    function readAndPreview(file) {
         //make sure 'file.name' matches our extensions criteria
         //using some regular expression
-
         if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
             var reader = new FileReader();
             reader.addEventListener("load", function () {
-                var image = new Image(225, 225);
+                var image = new Image(200, 200);
                 image.title = file.name;
                 image.border = 2;
                 image.src = this.result;
                 addImageRow(image);//this method will create new row in table to preview each image
+
                 countTableRow();//this method will count the total number uploaded files
-                //append images to
+                //append images to array
 
                 FormObjects[0].push(file);
             }, false);
             reader.readAsDataURL(file);
         }
-        if (files && files[0]) {
-            [].foreach.call(files, readAndPreview);
-        }
+
+    }
+
+    if (files && files[0]) {
+        files.forEach(arg => readAndPreview(arg));
     }
 
 }
-
 
 //function to remove files from array
 
 function removeFile(item)
 {
-    var row = $(item).closesr('tr');
+    var row = $(item).closest('tr');
     if ($("#ImageUploadTable tbody tr").length > 1)
     {
         FormObjects[0].splice(row.index(), 1);
@@ -111,7 +112,7 @@ function addImageRow(image)
         $("#ImageUploadTable").append("<tbody></tbody>");
         //now lets append row to the table
     }
-        $("#ImageUploadTable tbody").append (BuildImageTableRow(image));
+    $("#ImageUploadTable tbody").append(BuildImageTableRow(image));
     
 }
 //function to delete preview row
