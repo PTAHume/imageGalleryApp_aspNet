@@ -1,6 +1,40 @@
-﻿var FormObjects = [];
+﻿//$(function () {
+//    loadGalleryIds();
+//});
+
+var FormObjects = [];
 FormObjects[0] = [];
 FormObjects[1] = [];
+function loadGalleryIds()
+{
+    //call the API to get list of all gallery Ids
+
+    $.ajax({
+        type: "GET",
+        url: '/api/Gallery/',
+        dataType: 'json',
+        success: function (result) {
+            loadGalleries(result);
+        },
+        error: function () {
+            alert('could not load galleries');
+        }
+    });
+}
+
+function loadGalleries(result)
+    {
+            //loading galleries to Dropdown menu
+
+        if (result != null)
+        {
+            for(i in result)
+            {
+                $(#"selectImageGallery").append("<option value='"+result[i]+"'>" + result[i] + "</option>");
+            }
+        }
+    }
+
 function AjaxPost(formdata)
 {
     var form_Data = new FormData(formdata);
@@ -46,7 +80,7 @@ function PreviewFiles(files) {
         if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
             var reader = new FileReader();
             reader.addEventListener("load", function () {
-                var image = new Image(200, 200);
+                var image = new Image(600, 600);
                 image.title = file.name;
                 image.border = 2;
                 image.src = this.result;

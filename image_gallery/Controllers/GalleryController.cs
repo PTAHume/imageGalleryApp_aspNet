@@ -24,6 +24,37 @@ namespace image_gallery.Controllers
             _db = db;
             _env = env;
         }
+        [HttpGet]
+        public IActionResult GetImageGallery()
+        {
+            var result = _db.Galleries.ToList();
+            return Ok(result.Select(t=>t.GalleryId));
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetImageGallery([FromRoute]int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = from g in _db.Galleries
+                         join i in _db.GalleryImages.Where(t => t.GalleryId == id)
+                         on g.GalleryId equals i.GalleryId
+                         select new
+                         {
+                             Gallery_Id = g.GalleryId,
+                             Gallery_Title = g.Title,
+                             Gallery_Path = g.GalleryUrl,
+                             Image_Id = i.ImageId,
+                             Image_Path = i.ImageUrl,
+                             Image_Caption = i.Caption
+                         };
+            if (result==null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
         [HttpPost]
         public async Task<IActionResult> PostFormData(Gallery gallery, IFormCollection formdata)
         {
