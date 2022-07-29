@@ -65,6 +65,7 @@ function PreviewFiles(files) {
     if (files && files[0]) {
         files.forEach(arg => readAndPreview(arg));
     }
+    $('input[type=file],').val(null);
 
 }
 
@@ -78,11 +79,14 @@ function removeFile(item)
         FormObjects[0].splice(row.index(), 1);
         FormObjects[1].splice(row.index(), 1);
         row.remove();
-        console.log(FormObjects[0]);
+        countTableRow();
     }
     else if ($("#ImageUploadTable tbody").length == 1)
     {
         $("#ImageUploadTable tbody").remove();
+        FormObjects[0]=[];
+        FormObjects[1] = [];
+        countTableRow();
     } 
 }
 //function to clear preview table
