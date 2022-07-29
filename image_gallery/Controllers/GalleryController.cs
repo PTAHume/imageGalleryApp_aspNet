@@ -58,13 +58,15 @@ namespace image_gallery.Controllers
         [HttpPost]
         public async Task<IActionResult> PostFormData(Gallery gallery, IFormCollection formdata)
         {
+            int i = 0;
             string GalleryTitle = formdata["GalleryTitle"];
-            gallery.GalleryUrl = "1111111";
-            gallery.Title = "my gallery image";
+            //gallery.GalleryUrl = "1111111";
+            //gallery.Title = "my gallery image";
             
             int id = await CreateGalleryID(gallery);
-            int i = 0;
             string GalleryPath = Path.Combine(_env.ContentRootPath+$"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}",id.ToString());
+            string dbImageGalleryPath = Path.Combine( $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
+
             CreateDirectory(GalleryPath);
             foreach (var file in formdata.Files)
             {
@@ -73,11 +75,12 @@ namespace image_gallery.Controllers
                     var extension = Path.GetExtension(file.FileName);
                     var filename = DateTime.Now.ToString("yymmssfff");
                     var path = Path.Combine(GalleryPath, filename) + extension;
+                    var dbImagePath=Path.Combine(dbImageGalleryPath+$"{Path.DirectorySeparatorChar}",filename)+extension;
                     //string ImageCaption = formdata["ImageCaption[]"][i];
                     string ImageCaption = $"image{i}";
                     GalleryImage Image = new GalleryImage();
                     Image.GalleryId = id;
-                    Image.ImageUrl = path;
+                    Image.ImageUrl = dbImagePath;
                     Image.Caption = ImageCaption;
                     await _db.GalleryImages.AddAsync(Image);
                     using (var stream = new FileStream(path, FileMode.Create))
@@ -88,7 +91,7 @@ namespace image_gallery.Controllers
                 }
             }
             gallery.Title = GalleryTitle;
-            gallery.GalleryUrl = GalleryPath;
+            gallery.GalleryUrl = dbImageGalleryPath;
             _db.Galleries.Update(gallery);
             await _db.SaveChangesAsync();
             return new JsonResult("successfully added" + GalleryTitle);

@@ -1,6 +1,6 @@
-﻿//$(function () {
-//    loadGalleryIds();
-//});
+﻿$(function () {
+   loadGalleryIds();
+});
 
 var FormObjects = [];
 FormObjects[0] = [];
@@ -80,7 +80,7 @@ function PreviewFiles(files) {
         if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
             var reader = new FileReader();
             reader.addEventListener("load", function () {
-                var image = new Image(600, 600);
+                var image = new Image(200, 200);
                 image.title = file.name;
                 image.border = 2;
                 image.src = this.result;
