@@ -28,7 +28,7 @@ namespace image_gallery.Controllers
         public IActionResult GetImageGallery()
         {
             var result = _db.Galleries.ToList();
-            return Ok(result.Select(t=>t.GalleryId));
+            return Ok(result.Select(t => t.GalleryId));
         }
         [HttpGet("{id}")]
         public IActionResult GetImageGallery([FromRoute]int id)
@@ -60,8 +60,8 @@ namespace image_gallery.Controllers
         {
             int i = 0;
             string GalleryTitle = formdata["GalleryTitle"];
-            //gallery.GalleryUrl = "1111111";
-            //gallery.Title = "my gallery image";
+            gallery.GalleryUrl = "1111111";
+            gallery.Title = "my gallery image";
             
             int id = await CreateGalleryID(gallery);
             string GalleryPath = Path.Combine(_env.ContentRootPath+$"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}",id.ToString());
@@ -75,7 +75,7 @@ namespace image_gallery.Controllers
                     var extension = Path.GetExtension(file.FileName);
                     var filename = DateTime.Now.ToString("yymmssfff");
                     var path = Path.Combine(GalleryPath, filename) + extension;
-                    var dbImagePath=Path.Combine(dbImageGalleryPath+$"{Path.DirectorySeparatorChar}",filename)+extension;
+                    var dbImagePath=Path.Combine(dbImageGalleryPath+$"{Path.DirectorySeparatorChar}",filename) + extension;
                     //string ImageCaption = formdata["ImageCaption[]"][i];
                     string ImageCaption = $"image{i}";
                     GalleryImage Image = new GalleryImage();
@@ -94,7 +94,7 @@ namespace image_gallery.Controllers
             gallery.GalleryUrl = dbImageGalleryPath;
             _db.Galleries.Update(gallery);
             await _db.SaveChangesAsync();
-            return new JsonResult("successfully added" + GalleryTitle);
+            return new JsonResult("successfully added: " + GalleryTitle);
         }
         private void CreateDirectory(string gallerypath)
         {

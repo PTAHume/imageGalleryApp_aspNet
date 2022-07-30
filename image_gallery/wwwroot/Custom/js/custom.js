@@ -5,6 +5,7 @@
 var FormObjects = [];
 FormObjects[0] = [];
 FormObjects[1] = [];
+
 function loadGalleryIds()
 {
     //call the API to get list of all gallery Ids
@@ -13,10 +14,12 @@ function loadGalleryIds()
         type: "GET",
         url: '/api/Gallery/',
         dataType: 'json',
-        success: function (result) {
+        success: function (result)
+        {
             loadGalleries(result);
         },
-        error: function () {
+        error: function ()
+        {
             alert('could not load galleries');
         }
     });
@@ -30,11 +33,34 @@ function loadGalleries(result)
         {
             for(i in result)
             {
-                $(#"selectImageGallery").append("<option value='"+result[i]+"'>" + result[i] + "</option>");
+                $("#selectImageGallery").append("<option value='" + result[i] + "'>" + result[i] + "</option>");
             }
         }
     }
-
+function LoadSlider(val) {
+    $.ajax
+        ({
+        type: 'GET',
+        url: 'api/Gallery/' + val,
+        dataType: 'json',
+            success: function (data) {
+                $(".swiper-wrapper").html("");
+            $.each(data, function (key, value) {
+                $(".swiper-wrapper").append("<div class='swiper-slide'><img width='100%' height='350px' src='" + value.image_Path + "' />" + value.image_Caption + "</div>");
+            });
+                var swiper = new Swiper('.swiper', {
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'progressbar',
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+        }
+    });
+}
 function AjaxPost(formdata)
 {
     var form_Data = new FormData(formdata);
@@ -99,7 +125,7 @@ function PreviewFiles(files) {
     if (files && files[0]) {
         files.forEach(arg => readAndPreview(arg));
     }
-    $('input[type=file],').val(null);
+    $('input[type="file"]').val(null);
 
 }
 
@@ -115,7 +141,7 @@ function removeFile(item)
         row.remove();
         countTableRow();
     }
-    else if ($("#ImageUploadTable tbody").length == 1)
+    else if ($("#ImageUploadTable tbody tr").length == 1)
     {
         $("#ImageUploadTable tbody").remove();
         FormObjects[0]=[];

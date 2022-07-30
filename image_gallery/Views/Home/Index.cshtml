@@ -56,13 +56,23 @@
                         <div class="input-group-prepend">
                             <label class="iput-group-text" for="selectImageGallery">Options</label>
                         </div>
-                        <select class="custom-select" id="selectImageGallery">
+                        <select class="custom-select" id="selectImageGallery" onchange="LoadSlider(this.value)">
                             <option selected>Select Gallery ID</option>
-                            
                         </select>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+               </div>
         </div>
     </div>
 </div>
