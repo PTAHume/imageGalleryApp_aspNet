@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{64B4126B-8421-4F2F-A029-9AC4CF83BD6A}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="image_gallery/Controllers/GalleryController.cs">
+  <MonoDevelop.Ide.ItemProperties.image__gallery PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="image_gallery/wwwroot/Custom/js/custom.js">
     <Files>
-      <File FileName="image_gallery/Views/Home/Index.cshtml" Line="63" Column="27" />
-      <File FileName="image_gallery/Controllers/GalleryController.cs" Line="88" Column="56" />
-      <File FileName="image_gallery/wwwroot/Custom/js/custom.js" Line="107" Column="2" />
-      <File FileName="image_gallery/Views/Shared/_Layout.cshtml" Line="51" Column="51" />
+      <File FileName="image_gallery/Views/Home/Index.cshtml" Line="76" Column="12" />
+      <File FileName="image_gallery/Controllers/GalleryController.cs" Line="80" Column="21" />
+      <File FileName="image_gallery/wwwroot/Custom/js/custom.js" Line="57" Column="50" />
+      <File FileName="image_gallery/Views/Shared/_Layout.cshtml" Line="50" Column="44" />
       <File FileName="image_gallery/Program.cs" Line="32" Column="1" />
     </Files>
     <Pads>
@@ -14,29 +13,18 @@
         <State name="__root__">
           <Node name="image_gallery" expanded="True">
             <Node name="image_gallery" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="GalleryController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="Custom" expanded="True">
-                  <Node name="js" expanded="True" />
-                </Node>
-                <Node name="lib" expanded="True">
-                  <Node name="bootstrap" expanded="True">
-                    <Node name="dist" expanded="True">
-                      <Node name="js" expanded="True" />
-                    </Node>
-                  </Node>
-                  <Node name="jquery" expanded="True" />
-                  <Node name="jquery-validation" expanded="True">
-                    <Node name="dist" expanded="True" />
+                  <Node name="js" expanded="True">
+                    <Node name="custom.js" selected="True" />
                   </Node>
                 </Node>
+                <Node name="lib" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -50,6 +38,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.image__gallery PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

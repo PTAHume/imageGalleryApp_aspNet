@@ -40,14 +40,18 @@ function loadGalleries(result)
 function LoadSlider(val) {
     $.ajax
         ({
-        type: 'GET',
-        url: 'api/Gallery/' + val,
-        dataType: 'json',
-            success: function (data) {
+            type: 'GET',
+            url: 'api/Gallery/' + val,
+            dataType: 'json',
+            success: function (data)
+            {
                 $(".swiper-wrapper").html("");
-            $.each(data, function (key, value) {
-                $(".swiper-wrapper").append("<div class='swiper-slide'><img width='100%' height='350px' src='" + value.image_Path + "' />" + value.image_Caption + "</div>");
-            });
+                $.each(data, function (key, value)
+                {
+                    //alert(value);
+                    $('.swiper-wrapper').append("<div class='swiper-slide'><img width='100%' height='350px' src='" + value.image_Path + "' />" + value.image_Caption + "</div>");
+
+                });
                 var swiper = new Swiper('.swiper', {
                     pagination: {
                         el: '.swiper-pagination',
@@ -58,8 +62,8 @@ function LoadSlider(val) {
                         prevEl: '.swiper-button-prev',
                     },
                 });
-        }
-    });
+            }
+        });
 }
 function AjaxPost(formdata)
 {
