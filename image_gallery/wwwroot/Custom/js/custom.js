@@ -37,7 +37,7 @@ function loadGalleries(result)
             }
         }
     }
-function LoadSlider(val) {
+function loadSlider(val) {
     $.ajax
         ({
             type: 'GET',
@@ -48,11 +48,11 @@ function LoadSlider(val) {
                 $(".swiper-wrapper").html("");
                 $.each(data, function (key, value)
                 {
-                    //alert(value);
-                    $('.swiper-wrapper').append("<div class='swiper-slide'><img width='100%' height='350px' src='" + value.image_Path + "' />" + value.image_Caption + "</div>");
+                   // alert(value);
+                   $('.swiper-wrapper').append("<div class='swiper-slide'><img width='100%' height='350px' src='" + value.image_Path + "' />" + value.image_Caption + "</div>");
 
                 });
-                var swiper = new Swiper('.swiper', {
+                var swiper = new Swiper('.swiper-container', {
                     pagination: {
                         el: '.swiper-pagination',
                         type: 'progressbar',
@@ -107,6 +107,7 @@ function PreviewFiles(files) {
     function readAndPreview(file) {
         //make sure 'file.name' matches our extensions criteria
         //using some regular expression
+
         if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
             var reader = new FileReader();
             reader.addEventListener("load", function () {
@@ -164,6 +165,7 @@ function clearPreview()
 }
 
 //function to count number of files in the table
+
 function countTableRow() 
 {
     $("#imgCount").html("<i class='fa fa-images'></i>" + $("#ImageUploadTable tbody tr").length);
@@ -197,9 +199,9 @@ function BuildImageTableRow(image)
     var newRow = "<tr>" +
         "<td>" +
         "<div class=''>" +
-        "<img name='photo[]' style='border:1px solid' width='100' height='50' class='image-tag' src='" + image.src + "' " +
+        "<img name='photo[]' style='border:1px solid' widht='100' height='50' class='image-tag' src='" + image.src + "'" +
         "</>" +
-        "</div>" +
+        "</div>" 
         "</td>" +
         "<td>" +
             "<div class=''>" +
@@ -227,4 +229,9 @@ function BuildImageTableRow(image)
             "</td>"+
             "</tr>"
     return newRow;
+}
+function deletegallery() {
+    var id = $("#selectImageGallery").val();
+    $("#DeleteGalleryModal").modal('show');
+
 }

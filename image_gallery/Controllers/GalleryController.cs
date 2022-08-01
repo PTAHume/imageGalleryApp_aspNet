@@ -31,7 +31,7 @@ namespace image_gallery.Controllers
             return Ok(result.Select(t => t.GalleryId));
         }
         [HttpGet("{id}")]
-        public IActionResult GetImageGallery([FromRoute]int id)
+        public IActionResult GetImageGallery([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace image_gallery.Controllers
                              Image_Path = i.ImageUrl,
                              Image_Caption = i.Caption
                          };
-            if (result==null)
+            if (result == null)
             {
                 return NotFound();
             }
@@ -62,10 +62,10 @@ namespace image_gallery.Controllers
             string GalleryTitle = formdata["GalleryTitle"];
             gallery.GalleryUrl = "1111111";
             gallery.Title = "my gallery image";
-            
+
             int id = await CreateGalleryID(gallery);
-            string GalleryPath = Path.Combine(_env.ContentRootPath+$"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}",id.ToString());
-            string dbImageGalleryPath = Path.Combine( $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
+            string GalleryPath = Path.Combine(_env.ContentRootPath + $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
+            string dbImageGalleryPath = Path.Combine($"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
 
             CreateDirectory(GalleryPath);
             foreach (var file in formdata.Files)
@@ -75,7 +75,7 @@ namespace image_gallery.Controllers
                     var extension = Path.GetExtension(file.FileName);
                     var filename = DateTime.Now.ToString("yymmssfff");
                     var path = Path.Combine(GalleryPath, filename) + extension;
-                    var dbImagePath=Path.Combine(dbImageGalleryPath+$"{Path.DirectorySeparatorChar}",filename) + extension;
+                    var dbImagePath = Path.Combine(dbImageGalleryPath + $"{Path.DirectorySeparatorChar}", filename) + extension;
                     //string ImageCaption = formdata["ImageCaption[]"][i];
                     string ImageCaption = $"image{i}";
                     GalleryImage Image = new GalleryImage();
@@ -111,6 +111,49 @@ namespace image_gallery.Controllers
             int id = gallery.GalleryId;
             return id;
         }
-    }
-}
+        //method for deleting the Gallery from DB
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteGallery([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            // find the gallery by its Id that we need to delete
+            var findGallery = await _db.Galleries.FindAsync(id);
+            if (findGallery == null)
+            {
+                return NotFound();
+            }
+            //if gallery exists in the DB - remove gallery by its Id
+            _db.Galleries.Remove(findGallery);
+            DeleteGalleryDirectory(id);
+            await _db.SaveChangesAsync();
+            //retrun success result to the client
+            return new JsonResult("Gallery deleted: " + id);
+        }
+        private void DeleteGalleryDirectory(int id)
+        {
+            //first getting the path of the directory folder
+            string GalleryPath = Path.Combine(_env.ContentRootPath + $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
 
+            string[] files = Directory.GetFiles(GalleryPath);
+
+            // check if the gallery folder exists
+
+            if (Directory.Exists(GalleryPath))
+            {
+                // first - delete files from folder
+                foreach (var file in files)
+                {
+                   System.IO.File.SetAttributes(file, FileAttributes.Normal);
+                    System.IO.File.Delete(file);
+
+                }
+                //finally delete gallery folder
+                Directory.Delete(GalleryPath);
+            }
+        }
+    }
+
+}

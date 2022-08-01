@@ -12,14 +12,14 @@
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Uploads\Gallery\1034\222125301.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="wwwroot\Uploads\" />
-    <Folder Include="wwwroot\Uploads\Gallery\" />
     <Folder Include="wwwroot\Custom\" />
     <Folder Include="wwwroot\Custom\js\" />
     <Folder Include="wwwroot\Custom\css\" />
+    <Folder Include="wwwroot\Uploads\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
@@ -34,10 +34,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="wwwroot\Uploads\" />
-    <Content Remove="wwwroot\Uploads\Gallery\" />
     <Content Remove="wwwroot\Custom\" />
     <Content Remove="wwwroot\Custom\js\" />
     <Content Remove="wwwroot\Custom\css\" />
+    <Content Remove="wwwroot\Uploads\Gallery\" />
   </ItemGroup>
 </Project>

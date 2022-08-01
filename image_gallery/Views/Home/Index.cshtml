@@ -56,9 +56,13 @@
                         <div class="input-group-prepend">
                             <label class="iput-group-text" for="selectImageGallery">Options</label>
                         </div>
-                        <select class="custom-select" id="selectImageGallery" onchange="LoadSlider(this.value)">
+                        <select class="custom-select" id="selectImageGallery" onchange="loadSlider(this.value)">
                             <option selected>Select Gallery ID</option>
                         </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" onclick="deletegallery()"><i class="fa fa-trash"></i></button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -72,7 +76,31 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
-             </div>
+            </div>
         </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteGalleryModal" role="dialog" aria-labelledby="DeleteGalleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DeleteGalleryModalLabel"><i class="fa fa-clipboard-check"></i></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button id="btnYesMake" type="button" class="btn btn-primary" onclick="confirmDeleteGallery">Yes</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

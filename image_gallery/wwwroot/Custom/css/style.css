@@ -1,2 +1,17 @@
-﻿body {
+﻿@import url('https://fonts.qoogLeapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+•swiper-container {
+    background-color: #7cb342;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+}
+.swiper-container:hover{
+     box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+    border-radius: 4px;
+    transition:all 0.3s ease;
 }
