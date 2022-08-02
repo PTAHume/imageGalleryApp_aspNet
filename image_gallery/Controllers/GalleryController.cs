@@ -28,7 +28,7 @@ namespace image_gallery.Controllers
         public IActionResult GetImageGallery()
         {
             var result = _db.Galleries.ToList();
-            return Ok(result.Select(t => t.GalleryId));
+            return Ok(result.Select(t =>new { t.GalleryId, t.Title }));
         }
         [HttpGet("{id}")]
         public IActionResult GetImageGallery([FromRoute] int id)
@@ -62,7 +62,6 @@ namespace image_gallery.Controllers
             string GalleryTitle = formdata["GalleryTitle"];
             gallery.GalleryUrl = "1111111";
             gallery.Title = "my gallery image";
-
             int id = await CreateGalleryID(gallery);
             string GalleryPath = Path.Combine(_env.ContentRootPath + $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
             string dbImageGalleryPath = Path.Combine($"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
@@ -72,8 +71,11 @@ namespace image_gallery.Controllers
             {
                 if (file.Length > 0)
                 {
+                    // Set the extension, file name and path of the folder and file
                     var extension = Path.GetExtension(file.FileName);
+                    // make the file name unique by adding date time Stamp
                     var filename = DateTime.Now.ToString("yymmssfff");
+                    // Create the file path 
                     var path = Path.Combine(GalleryPath, filename) + extension;
                     var dbImagePath = Path.Combine(dbImageGalleryPath + $"{Path.DirectorySeparatorChar}", filename) + extension;
                     //string ImageCaption = formdata["ImageCaption[]"][i];
@@ -154,6 +156,100 @@ namespace image_gallery.Controllers
                 Directory.Delete(GalleryPath);
             }
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult>UpdateGallery([FromRoute] int id, IFormCollection formData)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            int i = 0;
+            int j = 0;
+            //getting new gallery Title
+            string Title = formData["GalleryTitleEdit"];
+            //getting the details of the gallery wich we need to update on server
+            var oGallery = await _db.Galleries.FirstOrDefaultAsync(m => m.GalleryId == id);
+            string GalleryPath = Path.Combine(_env.ContentRootPath + oGallery.GalleryUrl);
+            if(formData.Files.Count>0)
+            {
+                string[] filesToDeletePath = new string[formData.Files.Count];
+                foreach(var file in formData.Files)
+                {
+                    if(file.Length>0)
+                    {
+                        // Set the extension, file name and path of the folder and file
+                        var extension = Path.GetExtension(file.FileName);
+                        // make the file name unique by adding date time Stamp
+                        var filename = DateTime.Now.ToString("yymmssfff");
+                        // Create the file path 
+                        var path = Path.Combine(GalleryPath, filename) + extension;
+                        var dbImagePath = Path.Combine(oGallery.GalleryUrl + $"{Path.DirectorySeparatorChar}", filename) + extension;
+                        //string ImageCaption = formdata["ImageCaption[]"][i];
+                        string ImageId = formData["ImageId[]"][i];
+                        //getting the info of the image that needs to be updated
+                        var updateImage = _db.GalleryImages.FirstOrDefault(o => o.ImageId == Convert.ToInt32(ImageId));
+                        //first we will store path of each old file to delete in our empty array
+                        filesToDeletePath[i] = Path.Combine(_env.ContentRootPath + updateImage.ImageUrl);
+                        updateImage.ImageUrl = dbImagePath;
+                        //copying new files to the server - gallery folder
+                        using (var stream=new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        //update and save changes to the DB
+                        using (var dbContextTransaction=_db.Database.BeginTransaction())
+                        {
+                            try
+                            {
+                                _db.Entry(updateImage).State = EntityState.Modified;
+                                await _db.SaveChangesAsync();
+                                dbContextTransaction.Commit();
+                            }
+                            catch(Exception)
+                            {
+                                dbContextTransaction.Rollback();
+                            }
+                        }
+                        i = i + 1;
+                    }
+                }
+                //delete all the old files
+                foreach(var item in filesToDeletePath)
+                {
+                    System.IO.File.SetAttributes(item, FileAttributes.Normal);
+                    System.IO.File.Delete(item);
+                }
+            }
+            //condition to validate and update gallery title and image caption
+            if (formData["imageCaption[]"].Count > 0)
+            {
+                oGallery.Title = Title;
+                _db.Entry(oGallery).State = EntityState.Modified;
+                foreach(var imgcap in formData["imageCaption[]"])
+                        {
+                    string ImageIdCap = formData["imageId[]"][i];
+                    string Caption = formData["imageCaption[]"][i];
+                    var updateCaption = _db.GalleryImages.FirstOrDefault(o => o.ImageId == Convert.ToInt32(ImageIdCap));
+                    updateCaption.Caption = Caption;
+                    using (var dbContextTransaction = _db.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            _db.Entry(updateCaption).State = EntityState.Modified;
+                            await _db.SaveChangesAsync();
+                            dbContextTransaction.Commit();
+                        }
+                        catch(Exception)
+                        {
+                            dbContextTransaction.Rollback();
+                        }
+                    }
+                    j = j + 1;
+                }
+            }
+            return new JsonResult("Updated succesfully: ");
+        }
     }
+
 
 }

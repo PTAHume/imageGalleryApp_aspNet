@@ -11,7 +11,7 @@ function loadGalleryIds()
     //call the API to get list of all gallery Ids
 
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: '/api/Gallery/',
         dataType: 'json',
         success: function (result)
@@ -158,9 +158,10 @@ function removeFile(item)
 
 function clearPreview()
 {
-    if ($("#ImageUploadTable tbody").length > 0) {
+    if ($("#ImageUploadTable tbody").length > 0)
+    {
         $("#ImageUploadTable tbody tr").remove();
-        $("#imgCount").html("<i class='fa fa-images'></i>" + 0);
+        $("#imgCount").html("<i class='fa fa-images'></i> " + 0);
     }
 }
 
@@ -230,8 +231,147 @@ function BuildImageTableRow(image)
             "</tr>"
     return newRow;
 }
-function deletegallery() {
+function deletegallery()
+{
     var id = $("#selectImageGallery").val();
     $("#DeleteGalleryModal").modal('show');
+    $("#DeleteGalleryModal .modal-title").html("Delete Confirmation");
+    $("#DeleteGalleryModal .modal-body").html("Do You Want To Delete " + "<strong class='text-danger'><span id='toDeleteGL'>" + id + "</span></strong>" + " Gallery ? ");
+}
+function confirmDeleteGallery()
+{
+    var idGL = $("#toDeleteGL").text();
+    //handle deletion here
 
+    var ajaxOptions = {};
+    ajaxOptions.url = "api/Gallery/" + idGL;
+    ajaxOptions.type = "DELETE";
+    ajaxOptions.dataType = 'json';
+    ajaxoptions.success = function ()
+    {
+        $("#DeleteGalleryModal").modal('hide');
+        alert('Deleted Gallery');
+    };
+    ajaxOptions.error = function ()
+    {
+        alert("could not Delete this Gallery");
+    };
+    $.ajax(ajaxOptions);
+}
+
+function editgallery()
+{
+    var id = $("#selectImageGallery").val();
+    $("#EditGalleryModal").modal('show');
+    $("#EditGalleryModal.modal-title").html("Edit Gallery" + id);
+    $("#EditGalleryModal #galleryId").text(id);
+    $.ajax({
+        type: 'GET',
+        url: '/api/Gallery' + id,
+        dataType: 'json',
+        success: function (data)
+        {
+            $("#GalleryTitleEdit").val(data[0].gallery_Title);
+            $("#EditGalleryTable tbody").remove();
+            $("#EditGalleryTable ").append("<tbody></tbody>");
+            $.each(data, function (key, value)
+            {
+                $('#EditGalleryTable tbody').append(BuildEditRow(value));
+            });
+        }
+    });
+}
+function BuildEditRow(value) {
+    var newEditRow =
+        "<tr>" +
+        "<div> class=''>" +
+        "<input name='Image_Id[]' hidden class='form-control col-xs-3' value='" + value.image_Id + "' " +
+        "/ > " +
+        "<img name='photo[]' style='border:1px solid' width='100' height='50' class='image-tag' src= '" + value.image_Path + "' " +
+        "/ > " +
+        "<img name='photo[]' style='border:1px solid' width='100' height='50' class='image-tag' src= '" + value.image_Path + "' " +
+        "/ > " +
+        "</div>" +
+        "</td>" +
+        "<td>" +
+        "<div class=''>" +
+        "<input name='ImageCaption[]' class='form-control col-xs-3' value='" + value.image_Caption + "' placeholder='Enter Image Caption' " +
+        "/ > " +
+        "</div>" +
+        "</td>" +
+        "<td>" +
+        "<div class='btn-group' role='group' aria-label='Perform Actions'>" +
+        "<input type='file' name='File[]' style='display:none' onchange='previewImg(this)' " +
+        "/>" +
+        "<button type='button' name='Upload' class='btn btn-success btn-sm' onclick='openFileExplorer(this)' " +
+        ">" +
+        "<span>" +
+        "<i class='fa fa-upload'>" +
+        "</i>" +
+        "</span>" +
+        "</button>" +
+        "</div>" +
+        "</td>" +   
+    "</tr>"
+
+    return newEditRow;
+}
+// open the file explorer
+function openFileExplorer(item) {
+    $(item).closest("tr").find("input[type='file']").trigger('click')
+
+}
+// Function to Preview upload image
+function previewImg(input)
+{
+    var parent_element = $(input).closest("tr");
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $(parent_element).find('img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+var GalleryObjects = [];
+GalleryObjects[0] = []; //contins image Id's
+GalleryObjects[1] = []; //contains image captions
+function ajaxUpdateGallery(formData)
+{
+    var form_Data = new FormData(formData);
+    var ids = form_Data.getAll('Image_Id[]');
+    var captions = form_Data.getAll('ImageCaption[]');
+    for (var counter = 0; counter < ids.length; counter++) {
+        GalleryObjects[0].push(ids[counter]);
+        GalleryObjects[1].push(captions[counter]);
+    }
+    for (var i = 0, imageCaption, imageId; imageCaption = GalleryObjects[1][i], imageId = GalleryObjects[0][i]; i++) {
+        form_Data.append('image_Id[]', imageId);
+        form_Data.delete('image_Id[]');
+        form_Data.append('imageCaption[]', imageCaption);
+        form_Data.delete('imageCaption[]');
+    }
+    var id = $("#EditGalleryModal #galleryId").text();
+    var ajaxOptions =
+    {
+        type: 'PUT',
+        url: "/api/Gallery/" + id,
+        data: form_Data,
+        success: function (result) {
+            alert("gallery updated succesfully");
+            window.location.href = "/Home/Index";
+        },
+
+        error: function () {
+            alert("couldn't update gallery");
+        }
+    }
+        if($(formData).attr('enctype') == "multipart/form-data")
+        {
+            ajaxOptions["contentType"]= false;
+            ajaxOptions["processdata"] = false;
+        }
+$.ajax(ajaxOptions);
+    return false;
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "G+9reCNRk5QLgTS1ZP87KS7ZzAQ0yd1YLkdNSXmMYZ8=",
+  "Hash": "qsDgi8eCGqAteDS3Xs92WqTLnfK8VXe/F1uCRQYfNtE=",
   "Source": "image_gallery",
   "BasePath": "_content/image_gallery",
   "Mode": "Default",
@@ -2601,12 +2601,12 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/.DS_Store"
     },
     {
-      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/dist/jquery.js",
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/jquery.js",
       "SourceId": "image_gallery",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
       "BasePath": "_content/image_gallery",
-      "RelativePath": "lib/jquery/dist/jquery.js",
+      "RelativePath": "lib/jquery/jquery.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2615,15 +2615,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.js"
+      "OriginalItemSpec": "wwwroot/lib/jquery/jquery.js"
     },
     {
-      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/jquery.min.js",
       "SourceId": "image_gallery",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
       "BasePath": "_content/image_gallery",
-      "RelativePath": "lib/jquery/dist/jquery.min.js",
+      "RelativePath": "lib/jquery/jquery.min.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2632,15 +2632,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.js"
+      "OriginalItemSpec": "wwwroot/lib/jquery/jquery.min.js"
     },
     {
-      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/jquery.min.map",
       "SourceId": "image_gallery",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
       "BasePath": "_content/image_gallery",
-      "RelativePath": "lib/jquery/dist/jquery.min.map",
+      "RelativePath": "lib/jquery/jquery.min.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2649,7 +2649,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.map"
+      "OriginalItemSpec": "wwwroot/lib/jquery/jquery.min.map"
     },
     {
       "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/lib/jquery/LICENSE.txt",
@@ -5285,6 +5285,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/.DS_Store"
+    },
+    {
+      "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Uploads/Gallery/.DS_Store",
+      "SourceId": "image_gallery",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/",
+      "BasePath": "_content/image_gallery",
+      "RelativePath": "Uploads/Gallery/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/Gallery/.DS_Store"
     },
     {
       "Identity": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/wwwroot/Uploads/Gallery/11/224607397.png",

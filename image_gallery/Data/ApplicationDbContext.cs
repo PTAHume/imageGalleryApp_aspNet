@@ -1,7 +1,8 @@
 ﻿using System;
 using image_gallery.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel;
+
 namespace image_gallery.Data
 {
     public class ApplicationDbContext:DbContext
