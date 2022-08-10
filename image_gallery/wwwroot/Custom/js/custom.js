@@ -2,13 +2,13 @@
     loadGalleryIds();
 });
 
-var FormObjects = [];
+const FormObjects = [];
 FormObjects[0] = [];
 FormObjects[1] = [];
 
 function loadGalleryIds() {
     //call the API to get list of all gallery Ids
-
+    $("#selectImageGallery").html("<option selected>Select Gallery ID</option>")
     $.ajax({
         type: 'GET',
         url: '/api/Gallery/',
@@ -25,13 +25,14 @@ function loadGalleryIds() {
 function loadGalleries(result) {
     //loading galleries to Dropdown menu
 
-    if (result != null) {
-        for (i in result) {
+    if (result !== null) {
+        for (let i in result) {
             $("#selectImageGallery").append("<option value='" + result[i].galleryId + "'>" + result[i].title + "</option>");
         }
     }
 }
 function loadSlider(val) {
+    $('.swiper-wrapper').empty();
     $.ajax
         ({
             type: 'GET',
@@ -40,13 +41,11 @@ function loadSlider(val) {
             success: function (data) {
                 $(".swiper-wrapper").html("");
                 $.each(data, function (key, value) {
-                    // alert(value);
                     value.image_Path = value.image_Path.replace(/\\/g, '/');
-                    //replace("\", " / ");
                     $('.swiper-wrapper').append("<div class='swiper-slide'><img width='100%' height='350px' src='.." + value.image_Path + "' />" + value.image_Caption + "</div>");
 
                 });
-                var swiper = new Swiper('.swiper-container', {
+                const swiper = new Swiper('.swiper-container', {
                     pagination: {
                         el: '.swiper-pagination',
                         type: 'progressbar',
@@ -60,26 +59,29 @@ function loadSlider(val) {
         });
 }
 function AjaxPost(formdata) {
-    var form_Data = new FormData(formdata);
+    const form_Data = new FormData(formdata);
     for (var i = 0, file; file = FormObjects[0][i]; i++) {
         form_Data.append('Files[]', file);
         form_Data.delete('Files');
     }
-    for (var j = 0, caption; caption = FormObjects[1][j]; j++) {
+    for (let j = 0, caption; caption = FormObjects[1][j]; j++) {
         form_Data.append('ImageCaption[]', caption);
         form_Data.delete('ImageCAption');
     }
-    var ajaxOptions =
+    const ajaxOptions =
     {
         type: "POST",
         url: "api/Gallery/",
         data: form_Data,
         success: function (result) {
             alert(result);
-            window.location.href = "/Home/Index"
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown)
         }
     }
-    if ($(formdata).attr('enctype') == "multipart/form-data") {
+    if ($(formdata).attr('enctype') === "multipart/form-data") {
         ajaxOptions['contentType'] = false;
         ajaxOptions['processData'] = false;
     }
@@ -89,8 +91,8 @@ function AjaxPost(formdata) {
 // function to Preview Files
 
 
-function PreviewFiles(files) {
-    var files = [...files];
+function PreviewFiles(data) {
+    const files = [...data];
     //function to read the selected  for upload
 
     function readAndPreview(file) {
@@ -98,7 +100,7 @@ function PreviewFiles(files) {
         //using some regular expression
 
         if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.addEventListener("load", function () {
                 var image = new Image(200, 200);
                 image.title = file.name;
@@ -126,7 +128,7 @@ function PreviewFiles(files) {
 //function to remove files from array
 
 function removeFile(item) {
-    var row = $(item).closest('tr');
+    const row = $(item).closest('tr');
     if ($("#ImageUploadTable tbody tr").length > 1) {
         FormObjects[0].splice(row.index(), 1);
         FormObjects[1].splice(row.index(), 1);
@@ -160,7 +162,7 @@ function countTableRow() {
 function addImageRow(image) {
     //first check if <tbody> tag already exists, if not - adding one
 
-    if ($("#ImageUploadTable tbody").length == 0) {
+    if ($("#ImageUploadTable tbody").length === 0) {
         $("#ImageUploadTable").append("<tbody></tbody>");
         //now lets append row to the table
     }
@@ -170,72 +172,48 @@ function addImageRow(image) {
 //function to delete preview row
 
 function delPreviewRow(item) {
-    var filename = $(item).closest('[name="photo[]"]');
+    const filename = $(item).closest('[name="photo[]"]');
     alert(filename);
 }
 //function to create new row for each image selected to upload
 
 function BuildImageTableRow(image) {
-    var newRow = "<tr>" +
-        "<td>" +
-        "<div class=''>" +
-        "<img name='photo[]' style='border:1px solid' widht='100' height='50' class='image-tag' src='" + image.src + "'" +
-        "</>" +
-        "</div>"
-    "</td>" +
-        "<td>" +
-        "<div class=''>" +
-        "<input name='ImageCaption[]' class='form-control col-xs-3' value='' placeholder='Enter Image Caption' " +
-        "/>" +
-        "</div>" +
-        "</td>" +
-        "<td>" +
-        "<div class='btn-group' role='group' aria-label='Perform Actions'>" +
-        "<button type='button' name='Edit' class='btn btn-primary btn-sm' onclick=''" +
-        ">" +
-        "<span>" +
-        "<i class='fa fa-edit'>" +
-        "</i>" +
-        "</span" +
-        "</button>" +
-        "<button type='button' name='Delete' class='btn btn-danger btn-sm' onclick='removeFile(this)'" +
-        ">" +
-        "<span>" +
-        "<i class='fa fa-trash'>" +
-        "</i>" +
-        "</span>" +
-        "</button>" +
-        "</div>" +
-        "</td>" +
-        "</tr>"
+    const newRow = `<tr><td><div class=H"><img name="photo[]" style="border:1px solid" widht="100" height="50" class="image-tag" src="${image.src}" /> 
+    </div></td><td><div class=""><input name="ImageCaption[]" class="form-control col-xs-3" value="" placeholder="Enter Image Caption" /> \
+    </div></td><td><div class="btn-group" role="group" aria-label="Perform Actions"> 
+    <button type="button" name="Edit" class="btn btn-primary btn-sm" onclick=""><span><i class="fa fa-edit"></i> 
+    </span></button><button type="button" name="Delete" class="btn btn-danger btn-sm" onclick="removeFile(this)"><span> 
+    <i class="fa fa-trash"></i></span></button></div></td></tr>`;
     return newRow;
 }
 function deletegallery() {
-    var id = $("#selectImageGallery").val();
+    const id = $("#selectImageGallery").val();
     $("#DeleteGalleryModal").modal('show');
     $("#DeleteGalleryModal .modal-title").html("Delete Confirmation");
     $("#DeleteGalleryModal .modal-body").html("Do You Want To Delete " + "<strong class='text-danger'><span id='toDeleteGL'>" + id + "</span></strong>" + " Gallery ? ");
 }
 function confirmDeleteGallery() {
-    var idGL = $("#toDeleteGL").text();
+    const id = $("#selectImageGallery").val();
     //handle deletion here
+    $.ajax({
+        type: 'DELETE',
+        url: '/api/Gallery/' + id,
+        dataType: 'json',
+        success: function (data) {
+            $("#DeleteGalleryModal").modal('hide');
+            loadGalleryIds();
+            loadSlider(-1);
+            alert('Deleted Gallery');
+        },
+        error: function () {
+            alert("could not Delete this Gallery");
+        }
+    });
 
-    var ajaxOptions = {};
-    ajaxOptions.url = "api/Gallery/" + idGL;
-    ajaxOptions.type = "DELETE";
-    ajaxOptions.dataType = 'json';
-    ajaxoptions.success = function () {
-        $("#DeleteGalleryModal").modal('hide');
-        alert('Deleted Gallery');
-    };
-    ajaxOptions.error = function () {
-        alert("could not Delete this Gallery");
-    };
-    $.ajax(ajaxOptions);
 }
 
 function editgallery() {
-    var id = $("#selectImageGallery").val();
+    const id = $("#selectImageGallery").val();
     $("#EditGalleryModal").modal('show');
     $("#EditGalleryModal.modal-title").html("Edit Gallery" + id);
     $("#EditGalleryModal #galleryId").text(id);
@@ -254,38 +232,13 @@ function editgallery() {
     });
 }
 function BuildEditRow(value) {
-    var newEditRow =
-        "<tr>" +
-        "<div> class=''>" +
-        "<input name='Image_Id[]' hidden class='form-control col-xs-3' value='" + value.image_Id + "' " +
-        "/ > " +
-        "<img name='photo[]' style='border:1px solid' width='100' height='50' class='image-tag' src= '" + value.image_Path + "' " +
-        "/ > " +
-        "<img name='photo[]' style='border:1px solid' width='100' height='50' class='image-tag' src= '" + value.image_Path + "' " +
-        "/ > " +
-        "</div>" +
-        "</td>" +
-        "<td>" +
-        "<div class=''>" +
-        "<input name='ImageCaption[]' class='form-control col-xs-3' value='" + value.image_Caption + "' placeholder='Enter Image Caption' " +
-        "/ > " +
-        "</div>" +
-        "</td>" +
-        "<td>" +
-        "<div class='btn-group' role='group' aria-label='Perform Actions'>" +
-        "<input type='file' name='File[]' style='display:none' onchange='previewImg(this)' " +
-        "/>" +
-        "<button type='button' name='Upload' class='btn btn-success btn-sm' onclick='openFileExplorer(this)' " +
-        ">" +
-        "<span>" +
-        "<i class='fa fa-upload'>" +
-        "</i>" +
-        "</span>" +
-        "</button>" +
-        "</div>" +
-        "</td>" +
-        "</tr>"
-
+    const newEditRow = `<tr><div> class=""><input name="Image_Id[]" hidden class="form-control col-xs-3" value="${value.image_Id}"/ > 
+        <img name="photo[]" style="border:1px solid" width="100" height="50" class="image-tag" src="${value.image_Path}"/ > 
+        <img name="photo[]" style="border:1px solid" width="100" height="50" class="image-tag" src="${value.image_Path}"/ > 
+        </div></td><td><div class=""><input name="ImageCaption[]" class="form-control col-xs-3" value="${value.image_Caption}" placeholder="Enter Image Caption""/ >
+        </div></td><td><div class="btn-group" role="group" aria-label="Perform Actions"><input type="file" name="File[]" style="display:none" onchange="previewImg(this)""/>
+        <button type="button" name="Upload" class="btn btn-success btn-sm" onclick="openFileExplorer(this)""><span>
+        <i class="fa fa-upload"></i></span></button></div></td></tr>`;
     return newEditRow;
 }
 // open the file explorer
@@ -295,9 +248,9 @@ function openFileExplorer(item) {
 }
 // Function to Preview upload image
 function previewImg(input) {
-    var parent_element = $(input).closest("tr");
+    const parent_element = $(input).closest("tr");
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = function (e) {
             $(parent_element).find('img').attr('src', e.target.result);
         }
@@ -305,39 +258,38 @@ function previewImg(input) {
     }
 }
 
-var GalleryObjects = [];
+const GalleryObjects = [];
 GalleryObjects[0] = []; //contins image Id's
 GalleryObjects[1] = []; //contains image captions
 function ajaxUpdateGallery(formData) {
-    var form_Data = new FormData(formData);
-    var ids = form_Data.getAll('Image_Id[]');
-    var captions = form_Data.getAll('ImageCaption[]');
-    for (var counter = 0; counter < ids.length; counter++) {
+    const form_Data = new FormData(formData);
+    const ids = form_Data.getAll('Image_Id[]');
+    const captions = form_Data.getAll('ImageCaption[]');
+    for (let counter = 0; counter < ids.length; counter++) {
         GalleryObjects[0].push(ids[counter]);
         GalleryObjects[1].push(captions[counter]);
     }
-    for (var i = 0, imageCaption, imageId; imageCaption = GalleryObjects[1][i], imageId = GalleryObjects[0][i]; i++) {
+    for (let i = 0, imageCaption, imageId; imageCaption === GalleryObjects[1][i], imageId === GalleryObjects[0][i]; i++) {
         form_Data.append('image_Id[]', imageId);
         form_Data.delete('image_Id[]');
         form_Data.append('imageCaption[]', imageCaption);
         form_Data.delete('imageCaption[]');
     }
-    var id = $("#EditGalleryModal #galleryId").text();
-    var ajaxOptions =
+    const id = $("#EditGalleryModal #galleryId").text();
+    const ajaxOptions =
     {
         type: 'PUT',
         url: "/api/Gallery/" + id,
         data: form_Data,
-        success: function (result) {
+        success: function () {
             alert("gallery updated succesfully");
-            window.location.href = "/Home/Index";
+            location.reload();
         },
-
         error: function () {
             alert("couldn't update gallery");
         }
     }
-    if ($(formData).attr('enctype') == "multipart/form-data") {
+    if ($(formData).attr('enctype') === "multipart/form-data") {
         ajaxOptions["contentType"] = false;
         ajaxOptions["processdata"] = false;
     }

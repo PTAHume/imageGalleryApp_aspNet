@@ -56,7 +56,7 @@ namespace image_gallery.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public async Task<IActionResult> PostFormData(Gallery gallery, IFormCollection formdata)
+        public async Task<IActionResult> Create(Gallery gallery, IFormCollection formdata)
         {
             int i = 0;
             string GalleryTitle = formdata["GalleryTitle"];
@@ -113,6 +113,9 @@ namespace image_gallery.Controllers
             int id = gallery.GalleryId;
             return id;
         }
+
+
+
         //method for deleting the Gallery from DB
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGallery([FromRoute] int id)
@@ -137,7 +140,7 @@ namespace image_gallery.Controllers
         private void DeleteGalleryDirectory(int id)
         {
             //first getting the path of the directory folder
-            string GalleryPath = Path.Combine(_env.ContentRootPath + $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
+            string GalleryPath = Path.Combine(_env.ContentRootPath + $"wwwroot{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
 
             string[] files = Directory.GetFiles(GalleryPath);
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7tIGFeO57E6S7dLXEhygifpBJcqr6E1evkkj5AbRoHM=",
+  "Hash": "9Ob904tpORevRQy3NqWVG5YepQXMdyZOICD10MdAGEc=",
   "Source": "image_gallery",
   "BasePath": "_content/image_gallery",
   "Mode": "Default",
@@ -5149,23 +5149,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\libman.json"
-    },
-    {
-      "Identity": "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\wwwroot\\Uploads\\Gallery\\7\\223513996.jpg",
-      "SourceId": "image_gallery",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\wwwroot\\",
-      "BasePath": "_content/image_gallery",
-      "RelativePath": "Uploads/Gallery/7/223513996.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\Gallery\\7\\223513996.jpg"
     }
   ]
 }
