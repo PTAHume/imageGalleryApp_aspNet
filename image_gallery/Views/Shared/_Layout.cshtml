@@ -1,4 +1,5 @@
-﻿<!<!DOCTYPE html>
+﻿<!
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -40,7 +41,8 @@
             @RenderBody()
         </main>
     </div>
-
+    <img src="../Uploads/Gallery/5/220259664.jpg" width="100px" height="100px" />
+    <img src="~/Uploads/Gallery/5/220259664.jpg" width="100px" height="100px" />
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - image_gallery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -49,7 +51,7 @@
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/popper.js/dist/umd/popper.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/Custom/js/custom.js"></script>
+    <script src="~/Custom/js/custom.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 

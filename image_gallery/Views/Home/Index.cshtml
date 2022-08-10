@@ -97,7 +97,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -111,34 +110,35 @@
 <!-- Modal Edit Gallery-->
 
 <div class="modal fade" id="EditGalleryModal" role="dialog" aria-labelledby="EditGalleryModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document">
 
-<div class="modal-content">
-<div class="modal-header">
-<span hidden id="galleryId"></span>
-<h5 class="modal-title" id="EditGalleryModalLabel"><i class="fa fa-clipboard-check"></i></h5>
-<button type="button" class="close" data-dismiss-"modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-<form id="EditGallery" method="post" enctype="multipart/form-data" onsubmit="return event.preventDefault (), AjaxUpdateGallery(this)">
-    <div class="modal-body">
-        <div class="form-group">
-            <label class="col-md-12">Gallery Title</label>
-            <input id="GalleryTitleEdit" name="galleryTitleEdit" class="form-control" placeholder="Enter Titile For Gallery" />
-        </div>
-        <div class="form-group" style="margin-bottom:10px; margin-top: 5px">
-            <table id="EditGalleryTable" class="table table-bordered table-hover" style="margin:auto"></table>
-        </div>
-    </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <span hidden id="galleryId"></span>
+                <h5 class="modal-title" id="EditGalleryModalLabel"><i class="fa fa-clipboard-check"></i></h5>
+                <button type="button" class="close" data-dismiss-"modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="EditGallery" method="post" enctype="multipart/form-data" onsubmit="return event.preventDefault (), AjaxUpdateGallery(this)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-md-12">Gallery Title</label>
+                        <input id="GalleryTitleEdit" name="galleryTitleEdit" class="form-control" placeholder="Enter Titile For Gallery" />
+                    </div>
+                    <div class="form-group" style="margin-bottom:10px; margin-top: 5px">
+                        <table id="EditGalleryTable" class="table table-bordered table-hover" style="margin:auto"></table>
+                    </div>
+                </div>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button id="btnEditYes" class="btn btn-primary">Save</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button id="btnEditYes" class="btn btn-primary">Save</button>
+                </div>
+
+            </form>
+        </div>
     </div>
-</form>
-    </div>
-    </div>
-    </div>
+</div>
 
 

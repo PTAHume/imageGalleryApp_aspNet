@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/image_gallery.csproj": {}
+    "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\image_gallery.csproj": {}
   },
   "projects": {
-    "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/image_gallery.csproj": {
+    "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\image_gallery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/image_gallery.csproj",
+        "projectUniqueName": "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\image_gallery.csproj",
         "projectName": "image_gallery",
-        "projectPath": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/image_gallery.csproj",
-        "packagesPath": "/Users/sashamaksyutenko/.nuget/packages/",
-        "outputPath": "/Users/sashamaksyutenko/Desktop/C# projects/asp_net/image_gallery/image_gallery/obj/",
+        "projectPath": "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\image_gallery.csproj",
+        "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\patri\\OneDrive\\Documents\\GitHub\\Visual Studio\\Help\\image_gallery\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/sashamaksyutenko/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,8 +71,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -78,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400-preview.22330.6/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

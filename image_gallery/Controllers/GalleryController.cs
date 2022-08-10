@@ -28,7 +28,7 @@ namespace image_gallery.Controllers
         public IActionResult GetImageGallery()
         {
             var result = _db.Galleries.ToList();
-            return Ok(result.Select(t =>new { t.GalleryId, t.Title }));
+            return Ok(result.Select(t => new { t.GalleryId, t.Title }));
         }
         [HttpGet("{id}")]
         public IActionResult GetImageGallery([FromRoute] int id)
@@ -63,7 +63,7 @@ namespace image_gallery.Controllers
             gallery.GalleryUrl = "1111111";
             gallery.Title = "my gallery image";
             int id = await CreateGalleryID(gallery);
-            string GalleryPath = Path.Combine(_env.ContentRootPath + $"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
+            string GalleryPath = Path.Combine(_env.ContentRootPath + $"wwwroot{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
             string dbImageGalleryPath = Path.Combine($"{Path.DirectorySeparatorChar}Uploads{Path.DirectorySeparatorChar}Gallery{Path.DirectorySeparatorChar}", id.ToString());
 
             CreateDirectory(GalleryPath);
@@ -148,7 +148,7 @@ namespace image_gallery.Controllers
                 // first - delete files from folder
                 foreach (var file in files)
                 {
-                   System.IO.File.SetAttributes(file, FileAttributes.Normal);
+                    System.IO.File.SetAttributes(file, FileAttributes.Normal);
                     System.IO.File.Delete(file);
 
                 }
@@ -157,9 +157,9 @@ namespace image_gallery.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult>UpdateGallery([FromRoute] int id, IFormCollection formData)
+        public async Task<IActionResult> UpdateGallery([FromRoute] int id, IFormCollection formData)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -170,12 +170,12 @@ namespace image_gallery.Controllers
             //getting the details of the gallery wich we need to update on server
             var oGallery = await _db.Galleries.FirstOrDefaultAsync(m => m.GalleryId == id);
             string GalleryPath = Path.Combine(_env.ContentRootPath + oGallery.GalleryUrl);
-            if(formData.Files.Count>0)
+            if (formData.Files.Count > 0)
             {
                 string[] filesToDeletePath = new string[formData.Files.Count];
-                foreach(var file in formData.Files)
+                foreach (var file in formData.Files)
                 {
-                    if(file.Length>0)
+                    if (file.Length > 0)
                     {
                         // Set the extension, file name and path of the folder and file
                         var extension = Path.GetExtension(file.FileName);
@@ -192,12 +192,12 @@ namespace image_gallery.Controllers
                         filesToDeletePath[i] = Path.Combine(_env.ContentRootPath + updateImage.ImageUrl);
                         updateImage.ImageUrl = dbImagePath;
                         //copying new files to the server - gallery folder
-                        using (var stream=new FileStream(path, FileMode.Create))
+                        using (var stream = new FileStream(path, FileMode.Create))
                         {
                             await file.CopyToAsync(stream);
                         }
                         //update and save changes to the DB
-                        using (var dbContextTransaction=_db.Database.BeginTransaction())
+                        using (var dbContextTransaction = _db.Database.BeginTransaction())
                         {
                             try
                             {
@@ -205,7 +205,7 @@ namespace image_gallery.Controllers
                                 await _db.SaveChangesAsync();
                                 dbContextTransaction.Commit();
                             }
-                            catch(Exception)
+                            catch (Exception)
                             {
                                 dbContextTransaction.Rollback();
                             }
@@ -214,7 +214,7 @@ namespace image_gallery.Controllers
                     }
                 }
                 //delete all the old files
-                foreach(var item in filesToDeletePath)
+                foreach (var item in filesToDeletePath)
                 {
                     System.IO.File.SetAttributes(item, FileAttributes.Normal);
                     System.IO.File.Delete(item);
@@ -225,8 +225,8 @@ namespace image_gallery.Controllers
             {
                 oGallery.Title = Title;
                 _db.Entry(oGallery).State = EntityState.Modified;
-                foreach(var imgcap in formData["imageCaption[]"])
-                        {
+                foreach (var imgcap in formData["imageCaption[]"])
+                {
                     string ImageIdCap = formData["imageId[]"][i];
                     string Caption = formData["imageCaption[]"][i];
                     var updateCaption = _db.GalleryImages.FirstOrDefault(o => o.ImageId == Convert.ToInt32(ImageIdCap));
@@ -239,7 +239,7 @@ namespace image_gallery.Controllers
                             await _db.SaveChangesAsync();
                             dbContextTransaction.Commit();
                         }
-                        catch(Exception)
+                        catch (Exception)
                         {
                             dbContextTransaction.Rollback();
                         }
